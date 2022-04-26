@@ -1,0 +1,42 @@
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+header {
+  background-color: #1e293b;
+  height: 4rem;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-left: 1rem;
+  color: #fff;
+}
+
+header .title-suffix {
+  color: #bae6fd;
+}
+
+h1 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 2em;
+  margin: 0;
+}
+
+h2:not(:first-of-type) {
+  margin-top: 3rem;
+}
+
+main {
+  padding: 1rem 1rem;
+}
+
+canvas {
+  max-height: 400px;
+}

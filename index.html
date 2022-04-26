@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&amp;family=Raleway&amp;display=swap" rel="stylesheet"/>
+    <meta charSet="utf-8"/>
+    <title>Savings Chart</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="styles.css"/>
+  </head>
+  <body>
+    <header>
+      <h1>savings<span class="title-suffix">.chart</span></h1>
+    </header>
+
+    <main>
+      <p>Savings over time, including graph lines per account and stacked bar charts for overall savings.</p>
+
+      <h2>Per Account</h2>
+      <canvas id="lineChart"></canvas>
+
+      <h2>Overall</h2>
+      <canvas id="stackedChart"></canvas>
+    </main>
+
+    <script src="data.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" type="module"></script>
+  </body>
+</html>
