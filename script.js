@@ -47,15 +47,22 @@ function setupCharts() {
     },
   });
 
-  const totalData = Object.values(window.SAVINGS_CHART_DATA).reduce((totals, bankDetails) => {
-    Object.entries(bankDetails.data).forEach(([month, amount]) => {
-      totals[month] = typeof totals[month] !== 'undefined' ? totals[month] : 0;
-      totals[month] = totals[month] + amount;
-    });
+  const getTotalData = (accountExcludes = []) => {
+    return Object.entries(window.SAVINGS_CHART_DATA).reduce((totals, [accountName, bankDetails]) => {
+      if (accountExcludes.includes(accountName)) {
+        return totals;
+      }
 
-    return totals;
-  }, {});
+      Object.entries(bankDetails.data).forEach(([month, amount]) => {
+        totals[month] = typeof totals[month] !== 'undefined' ? totals[month] : 0;
+        totals[month] = totals[month] + amount;
+      });
 
+      return totals;
+    }, {});
+  };
+
+  const totalData = getTotalData();
   const totalDataSet = {
     label: 'Total without outstanding taxes',
     data: Object.values(totalData).reverse(),
@@ -69,6 +76,26 @@ function setupCharts() {
     data: {
       labels: Array.from(labels).reverse(),
       datasets: [totalDataSet],
+    },
+    options: {
+      responsive: true,
+    },
+  });
+
+  const totalWithoutCoinbaseData = getTotalData(['Coinbase']);
+  const totalWithoutCoinbaseDataSet = {
+    label: 'Total without outstanding taxes and without Coinbase',
+    data: Object.values(totalWithoutCoinbaseData).reverse(),
+    backgroundColor: '#1e293b',
+    borderColor: '#1e293b',
+    borderWidth: 1,
+  }
+
+  new Chart(document.getElementById('totalLineWithoutCoinbaseChart'), {
+    type: 'line',
+    data: {
+      labels: Array.from(labels).reverse(),
+      datasets: [totalWithoutCoinbaseDataSet],
     },
     options: {
       responsive: true,
