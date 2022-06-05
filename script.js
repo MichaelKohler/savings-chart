@@ -64,7 +64,7 @@ function setupCharts() {
 
   const totalData = getTotalData();
   const totalDataSet = {
-    label: 'Total without outstanding taxes',
+    label: 'Total',
     data: Object.values(totalData).reverse(),
     backgroundColor: '#1e293b',
     borderColor: '#1e293b',
@@ -84,7 +84,7 @@ function setupCharts() {
 
   const totalWithoutCoinbaseData = getTotalData(['Coinbase']);
   const totalWithoutCoinbaseDataSet = {
-    label: 'Total without outstanding taxes and without Coinbase',
+    label: 'Total without Coinbase',
     data: Object.values(totalWithoutCoinbaseData).reverse(),
     backgroundColor: '#1e293b',
     borderColor: '#1e293b',
@@ -96,6 +96,26 @@ function setupCharts() {
     data: {
       labels: Array.from(labels).reverse(),
       datasets: [totalWithoutCoinbaseDataSet],
+    },
+    options: {
+      responsive: true,
+    },
+  });
+
+  const totalWithoutCoinbaseAndDepotData = getTotalData(['Coinbase', 'DKB Depot']);
+  const totalWithoutCoinbaseAndDepotDataSet = {
+    label: 'Total without Coinbase and Depot',
+    data: Object.values(totalWithoutCoinbaseAndDepotData).reverse(),
+    backgroundColor: '#1e293b',
+    borderColor: '#1e293b',
+    borderWidth: 1,
+  }
+
+  new Chart(document.getElementById('totalLineWithoutCoinbaseAndDepotChart'), {
+    type: 'line',
+    data: {
+      labels: Array.from(labels).reverse(),
+      datasets: [totalWithoutCoinbaseAndDepotDataSet],
     },
     options: {
       responsive: true,
